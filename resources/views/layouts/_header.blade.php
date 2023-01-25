@@ -1,11 +1,11 @@
 <div class="page-title">
     <div class="row">
         <div class="col-12 col-md-6 order-md-1 order-last">
-            @hasSection('title')
-                <h3>@yield('title')</h3>
+            @hasSection('page-title')
+                <h3>@yield('page-title')</h3>
             @endif
-            @hasSection('subtitle')
-                <p class="text-subtitle text-muted">@yield('subtitle')</p>
+            @hasSection('page-subtitle')
+                <p class="text-subtitle text-muted">@yield('page-subtitle')</p>
             @endif
         </div>
         <div class="col-12 col-md-6 order-md-2 order-first">
