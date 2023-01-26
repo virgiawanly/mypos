@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,10 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::view('/', 'dashboard')->name('dashboard');
-    Route::resource('categories', CategoryController::class);
+
+    // ** Product Modules
+    Route::resource('categories', CategoryController::class)->except(['show']);
+    Route::resource('units', UnitController::class)->except(['show']);
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
