@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/main/app-dark.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/extensions/sweetalert2/sweetalert2.min.css') }}" />
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.svg') }}" type="image/x-icon" />
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.png') }}" type="image/png" />
 
@@ -67,6 +68,35 @@
 
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('assets/extensions/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/extensions/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script>
+        $(function() {
+            const Alert = swal.mixin({
+                showConfirmButton: true,
+            });
+
+            @if (session('success'))
+                Alert.fire({
+                    icon: 'success',
+                    title: '{{ session('success') }}',
+                    text: '{{ session('success_message') ?? null }}'
+                });
+            @endif
+
+            @if (session('error'))
+                Alert.fire({
+                    icon: 'error',
+                    title: '{{ session('error') }}',
+                    text: '{{ session('error_message') ?? null }}'
+                });
+            @endif
+
+            $(document).on('select2:open', function() {
+                document.querySelector('.select2-search__field').focus()
+            });
+        });
+    </script>
 
     <!-- Additional Scripts -->
     @stack('scripts')
