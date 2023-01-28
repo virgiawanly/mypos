@@ -15,7 +15,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-3">
-                        <label>Nama Kategori</label>
+                        <label>Nama Kategori <span class="text-danger">*</span></label>
                     </div>
                     <div class="col-md-9 form-group">
                         <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"

@@ -42,7 +42,7 @@ class UnitsDataTable extends DataTable
      */
     public function query(Unit $model): QueryBuilder
     {
-        return $model->newQuery()->latest();
+        return $model->newQuery();
     }
 
     /**
@@ -57,7 +57,8 @@ class UnitsDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->processing(true)
-            ->selectStyleSingle();
+            ->selectStyleSingle()
+            ->parameters(['order' => [3, 'DESC']]);
     }
 
     /**

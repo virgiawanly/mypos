@@ -46,7 +46,7 @@
                 </li>
                 <li class="sidebar-title">Master Data</li>
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link">
+                    <a href="{{ route('products.index') }}" class="sidebar-link">
                         <i class="bi bi-box-fill"></i>
                         <span>Produk</span>
                     </a>
@@ -67,34 +67,13 @@
                 <li class="sidebar-item">
                     <a href="" class="sidebar-link">
                         <i class="bi bi-bar-chart-fill"></i>
-                        <span>Setting Margin</span>
+                        <span>Setting Keuntungan</span>
                     </a>
                 </li>
-                <li class="sidebar-item has-sub">
-                    <a href="#" class="sidebar-link">
+                <li class="sidebar-item">
+                    <a href="" class="sidebar-link">
                         <i class="bi bi-tag-fill"></i>
-                        <span>Discount</span>
-                    </a>
-                    <ul class="submenu">
-                        <li class="submenu-item">
-                            <a href="">Discount Produk</a>
-                        </li>
-                        <li class="submenu-item">
-                            <a href="">Discount Perkategori</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-title">Human Resource</li>
-                <li class="sidebar-item">
-                    <a href="" class="sidebar-link">
-                        <i class="bi bi-people-fill"></i>
-                        <span>Karyawan</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="" class="sidebar-link">
-                        <i class="bi bi-person-fill-gear"></i>
-                        <span>Users</span>
+                        <span>Setting Discount</span>
                     </a>
                 </li>
                 <li class="sidebar-title">Laporan</li>
@@ -108,6 +87,13 @@
                     <a href="" class="sidebar-link">
                         <i class="bi bi-people-fill"></i>
                         <span>Laporan Karyawan</span>
+                    </a>
+                </li>
+                <li class="sidebar-title">Setting</li>
+                <li class="sidebar-item">
+                    <a href="" class="sidebar-link">
+                        <i class="bi bi-person-fill-gear"></i>
+                        <span>Karyawan</span>
                     </a>
                 </li>
                 <li class="sidebar-title">Extras</li>

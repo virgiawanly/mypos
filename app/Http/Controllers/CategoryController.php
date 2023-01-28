@@ -65,4 +65,14 @@ class CategoryController extends Controller
             ->with('success', 'Berhasil!')
             ->with('success_message', 'Data berhasil dihapus.');
     }
+
+    public function select2(Request $request): JsonResponse
+    {
+        $results = Category::select('id', 'name AS text')
+            ->where('name', 'LIKE', "%{$request->search}%")
+            ->limit(10)
+            ->get();
+
+        return response()->json(['results' => $results]);
+    }
 }

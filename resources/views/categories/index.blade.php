@@ -2,10 +2,6 @@
 @section('page-title', 'Kategori Produk')
 @section('page-subtitle', 'List data kategori produk')
 
-@push('head')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-@endpush
-
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/extensions/datatables/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extensions/datatables/responsive.bootstrap5.min.css') }}">

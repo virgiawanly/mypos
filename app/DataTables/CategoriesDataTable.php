@@ -42,7 +42,7 @@ class CategoriesDataTable extends DataTable
      */
     public function query(Category $model): QueryBuilder
     {
-        return $model->newQuery()->latest();
+        return $model->newQuery();
     }
 
     /**
@@ -57,7 +57,8 @@ class CategoriesDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->processing(true)
-            ->selectStyleSingle();
+            ->selectStyleSingle()
+            ->parameters(['order' => [3, 'DESC']]);
     }
 
     /**
