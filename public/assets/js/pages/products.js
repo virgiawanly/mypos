@@ -21,4 +21,8 @@ $(function () {
             },
         });
     });
+
+    $("#filter-btn").on("click", function () {
+        $("#products-table").DataTable().ajax.reload();
+    });
 });

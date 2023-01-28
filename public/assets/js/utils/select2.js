@@ -15,15 +15,28 @@ $(function () {
             );
         }
 
-        $(this).select2({
-            placeholder: "-",
+        const config = {
             ajax: {
                 url: resourceUrl,
                 delay: 300,
                 minimumInputlength: 1,
-                allowClear: true,
                 data: (params) => ({ search: params.term }),
             },
-        });
+        };
+
+        if ($(this).data("empty-option")) {
+            const text = $(this).data("empty-option");
+            config.ajax.processResults = function (data) {
+                const results = [{ id: 0, text: text }, ...data.results];
+                return { results };
+            };
+        }
+
+        if ($(this).attr("placeholder")) {
+            config.placeholder = $(this).attr("placeholder");
+        }
+
+        $(this).select2(config);
+        $(this).append("<option value=''>-</option>");
     });
 });

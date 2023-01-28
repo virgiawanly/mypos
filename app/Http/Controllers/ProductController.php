@@ -20,7 +20,9 @@ class ProductController extends Controller
     public function index(Request $request, ProductsDataTable $dataTable)
     {
         if ($request->ajax()) {
-            return $dataTable->render();
+            return $dataTable->with('category_id', $request->category_id)
+                ->with('unit_id', $request->unit_id)
+                ->render();
         }
 
         $table = $dataTable->html();

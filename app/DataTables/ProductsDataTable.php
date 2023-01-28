@@ -45,6 +45,9 @@ class ProductsDataTable extends DataTable
             ->editColumn('updated_at', function ($row) {
                 return $row->updated_at->format('d/m/Y H:i');
             })
+            ->editColumn('stock', function ($row) {
+                return $row->stock > 0 ? $row->stock : '<span class="badge bg-danger">Habis</span>';
+            })
             ->addColumn('action', function ($row) {
                 $action = '<a href="' . route('products.show', $row->id) . '" class="btn btn-info"><i class="bi bi-eye-fill"></i></a>';
                 $action .= '<a href="' . route('products.edit', $row->id) . '" class="btn btn-success"><i class="bi bi-pencil-fill"></i></a>';
@@ -52,7 +55,7 @@ class ProductsDataTable extends DataTable
                 return '<div class="d-flex gap-1">' . $action . '</div>';
             })->filterColumn('profit', function ($query, $keyword) {
                 $query->whereRaw("(products.sell_price - products.buy_price) LIKE ?", ["%{$keyword}%"]);
-            });
+            })->rawColumns(['stock', 'action']);
     }
 
     /**
@@ -65,6 +68,12 @@ class ProductsDataTable extends DataTable
     {
         return $model->newQuery()
             ->with(['category', 'unit'])
+            ->when($this->category_id, function ($query) {
+                $query->where('category_id', $this->category_id);
+            })
+            ->when($this->unit_id, function ($query) {
+                $query->where('unit_id', $this->unit_id);
+            })
             ->select('*', DB::raw('products.sell_price - products.buy_price AS profit'));
     }
 
@@ -82,7 +91,11 @@ class ProductsDataTable extends DataTable
             ->responsive(true)
             ->processing(true)
             ->selectStyleSingle()
-            ->parameters(['order' => [9, 'DESC']]);
+            ->parameters(['order' => [9, 'DESC']])
+            ->ajax(['data' => 'function(d) {
+                d.category_id = $("#category").val();
+                d.unit_id = $("#unit").val();
+            }']);
     }
 
     /**
@@ -105,10 +118,7 @@ class ProductsDataTable extends DataTable
             Column::make('buy_price')->title('Harga Beli')->className('text-end'),
             Column::make('sell_price')->title('Harga Jual')->className('text-end'),
             Column::make('profit')->title('Profit')->className('text-end'),
-            Column::make('stock')->title('Stok Tercatat')
-                ->name('stock')
-                ->className('text-center')
-                ->renderRaw('function(data, type, row) { return data > 0 ? data : \'<span class="badge bg-danger">Habis</span>\';}'),
+            Column::make('stock')->title('Stok Tercatat')->name('stock')->className('text-center'),
             Column::make('updated_at')->title('Terakhir Diupdate'),
             Column::computed('action')
                 ->title('')

@@ -1,9 +1,9 @@
-.select2-selection.select2-selection--single {
+.select2-selection {
     border: 1px solid #e4e6fc !important;
     padding: 1.2rem 0;
 }
 
-.select2-selection.select2-selection--single:active {
+.select2-selection:active {
     border: 1px solid #b5bcf7 !important;
 }
 
@@ -14,6 +14,11 @@
 
 .select2-search__field {
     outline-offset: 0 !important;
+}
+
+.select2-selection__arrow {
+    margin-top: 5px;
+    margin-right: 5px;
 }
 
 body.theme-dark .select2-selection {
